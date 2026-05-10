@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1777546989617,
+      "tag": "0000_fast_jazinda",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1777547497412,
+      "tag": "0001_lowly_korath",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1777564023884,
+      "tag": "0002_known_preak",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1777722608298,
+      "tag": "0003_curved_mandarin",
+      "breakpoints": true
+    }
+  ]
+}
