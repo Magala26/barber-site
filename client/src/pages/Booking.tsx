@@ -7,7 +7,7 @@ import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 import { toast } from "sonner";
 
-const LOGO_URL = "/manus-storage/WhatsAppImage2026-04-29at18.58.39_28095ef1.jpeg";
+const LOGO_URL = "/assets/section8-logo.svg";
 
 export default function Booking() {
   const [, setLocation] = useLocation();

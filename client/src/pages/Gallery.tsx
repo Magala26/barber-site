@@ -10,6 +10,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
+const LOCAL_GALLERY_FALLBACK = "/assets/gallery-premium-fade-placeholder.svg";
+
+function getGalleryImageUrl(imageUrl: string) {
+  if (!imageUrl || imageUrl.startsWith("/manus-storage/")) {
+    return LOCAL_GALLERY_FALLBACK;
+  }
+
+  return imageUrl;
+}
+
 export default function Gallery() {
   const { data: images, refetch } = trpc.gallery.list.useQuery();
   const { user } = useAuth();
@@ -50,7 +60,7 @@ export default function Gallery() {
         <div className="container flex items-center justify-between h-16">
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer">
-              <img src="/manus-storage/WhatsAppImage2026-04-29at18.58.39_28095ef1.jpeg" alt="Section8Studios" className="w-12 h-12 object-contain" />
+              <img src="/assets/section8-logo.svg" alt="Section8Studios" className="w-12 h-12 object-contain" />
               <span className="text-xl font-bold text-primary hidden sm:inline">Section8Studios</span>
             </div>
           </Link>
@@ -183,9 +193,12 @@ export default function Gallery() {
                   className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition"
                 >
                   <img
-                    src={image.imageUrl}
+                    src={getGalleryImageUrl(image.imageUrl)}
                     alt={image.title || "Gallery image"}
                     className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
+                    onError={(event) => {
+                      event.currentTarget.src = LOCAL_GALLERY_FALLBACK;
+                    }}
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-end">
                     <div className="w-full p-4 bg-gradient-to-t from-black/80 to-transparent text-white opacity-0 group-hover:opacity-100 transition duration-300">

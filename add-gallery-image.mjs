@@ -8,8 +8,8 @@ try {
     [
       'Section 8 Studios - Premium Fade',
       'Professional fade haircut showcasing expert barber technique and precision styling',
-      '/manus-storage/hsrcutno.2_0f2f6989.jpeg',
-      'hsrcutno.2_0f2f6989.jpeg'
+      '/assets/gallery-premium-fade-placeholder.svg',
+      'gallery-premium-fade-placeholder.svg'
     ]
   );
   console.log('✓ Image added to gallery successfully!');

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Section8Studios gallery placeholder</title>
+  <desc id="desc">A local fallback gallery image for a premium fade haircut service.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#151112"/>
+      <stop offset="0.52" stop-color="#241d20"/>
+      <stop offset="1" stop-color="#5b3341"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="55%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#background)"/>
+  <rect x="70" y="70" width="1060" height="660" rx="42" fill="none" stroke="#f6f0e8" stroke-opacity="0.18" stroke-width="3"/>
+  <circle cx="600" cy="330" r="210" fill="url(#glow)"/>
+  <path d="M415 520c55-86 111-129 185-129s130 43 185 129" fill="none" stroke="#c75d72" stroke-width="24" stroke-linecap="round"/>
+  <path d="M512 292c8-74 54-126 112-126 69 0 116 55 116 128 0 63-35 115-87 134-25 9-61 9-88 1-54-17-61-75-53-137z" fill="#f6f0e8" opacity="0.92"/>
+  <path d="M526 292c15-54 47-84 92-84 55 0 88 37 92 92-35-23-73-35-115-35-25 0-48 9-69 27z" fill="#111111"/>
+  <path d="M485 384c76 41 153 42 230 0" fill="none" stroke="#111111" stroke-width="12" stroke-linecap="round" opacity="0.82"/>
+  <text x="600" y="612" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="70" font-weight="700" fill="#f6f0e8">Premium Fade</text>
+  <text x="600" y="670" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="5" fill="#d6c7cb">SECTION8STUDIOS</text>
+</svg>

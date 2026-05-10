@@ -5,7 +5,7 @@ import { Link } from "wouter";
 import { MapPin, Clock, AlertCircle } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 
-const LOGO_URL = "/manus-storage/WhatsAppImage2026-04-29at18.58.39_28095ef1.jpeg";
+const LOGO_URL = "/assets/section8-logo.svg";
 
 export default function HouseCalls() {
   const { data: services } = trpc.services.list.useQuery();
