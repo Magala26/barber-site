@@ -2,10 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import { CheckCircle } from "lucide-react";
-import { trpc } from "@/lib/trpc";
 
 export default function Checkout() {
-  const paymentMutation = trpc.payments.create.useMutation();
+  const isSubmitting = false;
 
   const handlePayment = async () => {
     // This will be connected to Stripe when keys are provided
@@ -122,10 +121,10 @@ export default function Checkout() {
 
                 <Button
                   onClick={handlePayment}
-                  disabled={paymentMutation.isPending}
+                  disabled={isSubmitting}
                   className="w-full mt-6 bg-accent hover:bg-accent/90 text-accent-foreground text-lg py-6"
                 >
-                  {paymentMutation.isPending ? "Processing..." : "Complete Payment"}
+                  {isSubmitting ? "Processing..." : "Complete Payment"}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center mt-4">

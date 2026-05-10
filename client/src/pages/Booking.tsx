@@ -3,17 +3,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useLocation } from "wouter";
 import { Calendar, Clock, X } from "lucide-react";
-import { trpc } from "@/lib/trpc";
+import { SERVICES } from "@/data/services";
 import { useState } from "react";
 import { toast } from "sonner";
 
 const LOGO_URL = "/assets/section8-logo.svg";
+const WHATSAPP_PHONE = "27671733036";
 
 export default function Booking() {
   const [, setLocation] = useLocation();
-  const { data: services } = trpc.services.list.useQuery();
-  const { data: operatingHours } = trpc.operatingHours.list.useQuery();
-  const bookingMutation = trpc.bookings.create.useMutation();
+  const services = SERVICES;
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [selectedServices, setSelectedServices] = useState<number[]>([]);
   const [bookingDate, setBookingDate] = useState("");
@@ -73,44 +73,34 @@ export default function Booking() {
       return;
     }
 
-    try {
-      // Book the first service (primary service)
-      const booking = await bookingMutation.mutateAsync({
-        serviceId: selectedServices[0],
-        customerName,
-        customerEmail,
-        customerPhone,
-        bookingDate,
-        bookingTime,
-        notes: notes || undefined,
-      });
+    setIsSubmitting(true);
 
-      // Store booking data for confirmation page
-      if (booking) {
-        const selectedServiceNames = selectedServices
-          .map((id) => services?.find((s) => s.id === id)?.name)
-          .filter(Boolean)
-          .join(", ");
+    const selectedServiceNames = selectedServices
+      .map((id) => services?.find((s) => s.id === id)?.name)
+      .filter(Boolean)
+      .join(", ");
 
-        const confirmationData = {
-          bookingId: booking.id,
-          bookingDate,
-          bookingTime,
-          customerName,
-          customerPhone,
-          serviceNames: selectedServiceNames,
-          totalCost,
-          totalDuration,
-        };
-        localStorage.setItem("lastBooking", JSON.stringify(confirmationData));
-      }
+    // Store booking data for confirmation page
+    const confirmationData = {
+      bookingId: Date.now(),
+      bookingDate,
+      bookingTime,
+      customerName,
+      customerPhone,
+      serviceNames: selectedServiceNames,
+      totalCost,
+      totalDuration,
+    };
+    localStorage.setItem("lastBooking", JSON.stringify(confirmationData));
 
-      toast.success("Appointment booked successfully! SMS reminders will be sent.");
-      // Navigate to booking confirmation page
-      setLocation("/booking-confirmation");
-    } catch (error) {
-      toast.error("Failed to create booking");
-    }
+    // Send booking via WhatsApp
+    const message = `Hi Section8Studios! I'd like to book:\n\nServices: ${selectedServiceNames}\nDate: ${bookingDate}\nTime: ${bookingTime}\nName: ${customerName}\nPhone: ${customerPhone}\nEmail: ${customerEmail}${notes ? `\nNotes: ${notes}` : ''}\nTotal: R${totalCost.toFixed(2)}`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+
+    toast.success("Redirecting to WhatsApp to confirm your booking!");
+    setIsSubmitting(false);
+    setLocation("/booking-confirmation");
   };
 
   return (
@@ -269,10 +259,10 @@ export default function Booking() {
               {/* Book Button */}
               <button
                 onClick={handleBooking}
-                disabled={bookingMutation.isPending}
+                disabled={isSubmitting}
                 className="w-full bg-primary text-primary-foreground font-bold py-3 rounded-lg hover:bg-primary/90 transition disabled:opacity-50"
               >
-                {bookingMutation.isPending ? "Booking..." : "Book Your Appointment"}
+                {isSubmitting ? "Booking..." : "Book Your Appointment"}
               </button>
             </div>
 

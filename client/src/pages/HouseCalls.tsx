@@ -3,12 +3,12 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { MapPin, Clock, AlertCircle } from "lucide-react";
-import { trpc } from "@/lib/trpc";
+import { SERVICES } from "@/data/services";
 
 const LOGO_URL = "/assets/section8-logo.svg";
 
 export default function HouseCalls() {
-  const { data: services } = trpc.services.list.useQuery();
+  const services = SERVICES;
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedTime, setSelectedTime] = useState<string>("");
@@ -16,32 +16,24 @@ export default function HouseCalls() {
   const [phone, setPhone] = useState<string>("");
   const [name, setName] = useState<string>("");
 
-  const createHouseCall = trpc.houseCalls.create.useMutation();
+  const WHATSAPP_PHONE = "27671733036";
 
   const handleBookHouseCall = async () => {
     if (!selectedService || !selectedDate || !selectedTime || !address || !phone || !name) {
       alert("Please fill in all fields");
       return;
     }
-    try {
-      await createHouseCall.mutateAsync({
-        customerName: name,
-        customerPhone: phone,
-        address: address,
-        serviceIds: selectedService ? [selectedService] : [],
-        requestedDate: selectedDate,
-        requestedTime: selectedTime,
-      });
-      alert("House call booking request submitted! We will contact you shortly to confirm.");
-      setName("");
-      setPhone("");
-      setAddress("");
-      setSelectedService(null);
-      setSelectedDate("");
-      setSelectedTime("");
-    } catch (error) {
-      alert("Error submitting house call request. Please try again.");
-    }
+    const serviceName = services.find((s) => s.id === selectedService)?.name || "Service";
+    const message = `Hi Section8Studios! I'd like to book a House Call:\n\nService: ${serviceName}\nDate: ${selectedDate}\nTime: ${selectedTime}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    alert("Redirecting to WhatsApp to confirm your house call!");
+    setName("");
+    setPhone("");
+    setAddress("");
+    setSelectedService(null);
+    setSelectedDate("");
+    setSelectedTime("");
   };
 
   return (

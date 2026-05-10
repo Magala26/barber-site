@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Clock, Scissors } from "lucide-react";
-import { trpc } from "@/lib/trpc";
+import { SERVICES } from "@/data/services";
 
 export default function Services() {
-  const { data: services, isLoading } = trpc.services.list.useQuery();
+  const services = SERVICES;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -53,12 +53,7 @@ export default function Services() {
       {/* Services Grid */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container">
-          {isLoading ? (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">Loading services...</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
               {services?.map((service) => (
                 <Card key={service.id} className="p-8 border-border hover:shadow-lg transition">
                   <div className="flex items-start justify-between mb-4">
@@ -86,7 +81,6 @@ export default function Services() {
                 </Card>
               ))}
             </div>
-          )}
         </div>
       </section>
 

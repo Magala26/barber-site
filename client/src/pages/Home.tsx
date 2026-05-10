@@ -2,12 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Clock, Star } from "lucide-react";
-import { trpc } from "@/lib/trpc";
+import { SERVICES } from "@/data/services";
 
 const LOGO_URL = "/assets/section8-logo.svg";
 
 export default function Home() {
-  const { data: services } = trpc.services.list.useQuery();
+  const services = SERVICES;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
