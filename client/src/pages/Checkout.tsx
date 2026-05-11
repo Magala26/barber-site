@@ -18,7 +18,7 @@ export default function Checkout() {
         <div className="container flex items-center justify-between h-16">
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer">
-              <img src="/assets/section8-logo.svg" alt="Section8Studios" className="w-12 h-12 object-contain" />
+              <img src="/assets/s8-logo.jpg" alt="Section8Studios" className="w-12 h-12 object-contain" />
               <span className="text-xl font-bold text-primary hidden sm:inline">Section8Studios</span>
             </div>
           </Link>

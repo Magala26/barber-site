@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { Clock, Star } from "lucide-react";
 import { SERVICES } from "@/data/services";
 
-const LOGO_URL = "/assets/section8-logo.svg";
+const LOGO_URL = "/assets/s8-logo.jpg";
 
 export default function Home() {
   const services = SERVICES;

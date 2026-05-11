@@ -7,7 +7,7 @@ import { SERVICES } from "@/data/services";
 import { useState } from "react";
 import { toast } from "sonner";
 
-const LOGO_URL = "/assets/section8-logo.svg";
+const LOGO_URL = "/assets/s8-logo.jpg";
 const WHATSAPP_PHONE = "27671733036";
 
 export default function Booking() {

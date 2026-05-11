@@ -5,7 +5,7 @@ import { Link } from "wouter";
 import { MapPin, Clock, AlertCircle } from "lucide-react";
 import { SERVICES } from "@/data/services";
 
-const LOGO_URL = "/assets/section8-logo.svg";
+const LOGO_URL = "/assets/s8-logo.jpg";
 
 export default function HouseCalls() {
   const services = SERVICES;

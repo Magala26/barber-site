@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { CheckCircle, Calendar, Clock, User, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const LOGO_URL = "/assets/section8-logo.svg";
+const LOGO_URL = "/assets/s8-logo.jpg";
 
 export default function BookingConfirmation() {
   const [bookingData, setBookingData] = useState<any>(null);

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-const LOGO_URL = "/assets/section8-logo.svg";
+const LOGO_URL = "/assets/s8-logo.jpg";
 
 // Static gallery images using newly generated assets
 const GALLERY_IMAGES = [
