@@ -16,7 +16,7 @@ export default function Home() {
         <div className="container flex items-center justify-between h-16">
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer">
-              <img src={LOGO_URL} alt="Section8Studios" className="w-12 h-12 object-contain" />
+              <img src={LOGO_URL} alt="Section8Studios" className="w-16 h-16 aspect-square object-cover rounded-2xl" />
               <span className="text-xl font-bold text-primary hidden sm:inline">Section8Studios</span>
             </div>
           </Link>
@@ -49,7 +49,7 @@ export default function Home() {
       <section className="relative bg-gradient-to-b from-primary to-primary/90 text-white py-24 md:py-32 overflow-hidden">
         {/* Blended background logo */}
         <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-          <img src={LOGO_URL} alt="" className="w-96 h-96 object-contain" />
+          <img src={LOGO_URL} alt="" className="w-96 h-96 aspect-square object-cover rounded-3xl" />
         </div>
         
         <div className="container relative z-10">
@@ -127,7 +127,7 @@ export default function Home() {
       <section className="relative py-16 md:py-24 bg-primary text-white overflow-hidden">
         {/* Blended background logo */}
         <div className="absolute inset-0 flex items-center justify-end opacity-5 pointer-events-none">
-          <img src={LOGO_URL} alt="" className="w-96 h-96 object-contain" />
+          <img src={LOGO_URL} alt="" className="w-96 h-96 aspect-square object-cover rounded-3xl" />
         </div>
         
         <div className="container relative z-10">
@@ -151,7 +151,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <img src={LOGO_URL} alt="Section8Studios" className="w-10 h-10 object-contain" />
+                <img src={LOGO_URL} alt="Section8Studios" className="w-14 h-14 aspect-square object-cover rounded-2xl" />
                 <h4 className="font-bold">Section8Studios</h4>
               </div>
               <p className="text-sm text-primary-foreground/80">Premium barbershop experience.</p>

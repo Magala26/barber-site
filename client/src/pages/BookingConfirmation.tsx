@@ -39,7 +39,7 @@ export default function BookingConfirmation() {
         <div className="container flex items-center justify-between h-16">
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer">
-              <img src={LOGO_URL} alt="Section8Studios" className="w-12 h-12 object-contain" />
+              <img src={LOGO_URL} alt="Section8Studios" className="w-16 h-16 aspect-square object-cover rounded-2xl" />
               <span className="text-xl font-bold text-primary hidden sm:inline">Section8Studios</span>
             </div>
           </Link>
