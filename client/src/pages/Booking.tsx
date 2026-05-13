@@ -1,11 +1,11 @@
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useLocation } from "wouter";
 import { Calendar, Clock, X } from "lucide-react";
 import { SERVICES } from "@/data/services";
 import { useState } from "react";
 import { toast } from "sonner";
+import MultiSelectDropdown from "@/components/MultiSelectDropdown";
 
 const LOGO_URL = "/assets/s8-logo.jpg";
 const WHATSAPP_PHONE = "27671733036";
@@ -146,47 +146,19 @@ export default function Booking() {
               <div className="bg-card rounded-lg p-6 mb-6 shadow-md">
                 <div className="mb-4">
                   <h2 className="text-2xl font-bold mb-2">Select Services</h2>
-                  <p className="text-sm text-muted-foreground">You can select multiple services to combine in one appointment</p>
+                  <p className="text-sm text-muted-foreground">Choose one or more services to combine in one appointment</p>
                 </div>
-                <div className="space-y-3">
-                  {services?.map((service) => {
-                    const isSelected = selectedServices.includes(service.id);
-                    return (
-                      <div 
-                        key={service.id} 
-                        className={`flex items-center gap-3 p-4 border-2 rounded-lg transition cursor-pointer ${
-                          isSelected 
-                            ? 'border-accent bg-accent/5' 
-                            : 'border-border hover:border-accent/50 hover:bg-muted/30'
-                        }`}
-                        onClick={() => handleServiceToggle(service.id)}
-                      >
-                        <Checkbox
-                          id={`service-${service.id}`}
-                          checked={isSelected}
-                          onCheckedChange={() => handleServiceToggle(service.id)}
-                        />
-                        <label
-                          htmlFor={`service-${service.id}`}
-                          className="flex-1 cursor-pointer"
-                        >
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <p className="font-semibold">{service.name}</p>
-                              <p className="text-sm text-muted-foreground">{service.durationMinutes} minutes</p>
-                            </div>
-                            <p className="font-bold text-accent">R{parseFloat(service.price.toString()).toFixed(2)}</p>
-                          </div>
-                        </label>
-                      </div>
-                    );
-                  })}
-                </div>
-                {selectedServices.length > 1 && (
-                  <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-                    <p className="text-sm font-semibold text-green-900">✓ Multiple services selected: {selectedServices.length} services</p>
-                  </div>
-                )}
+                <MultiSelectDropdown
+                  options={services?.map((s) => ({
+                    id: s.id,
+                    name: s.name,
+                    price: s.price.toString(),
+                    durationMinutes: s.durationMinutes,
+                  })) || []}
+                  selectedIds={selectedServices}
+                  onSelectionChange={setSelectedServices}
+                  placeholder="Click to select services..."
+                />
               </div>
 
               {/* Date & Time Selection */}
