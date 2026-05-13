@@ -144,30 +144,49 @@ export default function Booking() {
             <div className="md:col-span-2">
               {/* Services Selection */}
               <div className="bg-card rounded-lg p-6 mb-6 shadow-md">
-                <h2 className="text-2xl font-bold mb-4">Select Services</h2>
-                <div className="space-y-3">
-                  {services?.map((service) => (
-                    <div key={service.id} className="flex items-center gap-3 p-3 border border-border rounded-lg hover:bg-muted/50 transition">
-                      <Checkbox
-                        id={`service-${service.id}`}
-                        checked={selectedServices.includes(service.id)}
-                        onCheckedChange={() => handleServiceToggle(service.id)}
-                      />
-                      <label
-                        htmlFor={`service-${service.id}`}
-                        className="flex-1 cursor-pointer"
-                      >
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <p className="font-semibold">{service.name}</p>
-                            <p className="text-sm text-muted-foreground">{service.durationMinutes} minutes</p>
-                          </div>
-                          <p className="font-bold text-primary">R{parseFloat(service.price.toString()).toFixed(2)}</p>
-                        </div>
-                      </label>
-                    </div>
-                  ))}
+                <div className="mb-4">
+                  <h2 className="text-2xl font-bold mb-2">Select Services</h2>
+                  <p className="text-sm text-muted-foreground">You can select multiple services to combine in one appointment</p>
                 </div>
+                <div className="space-y-3">
+                  {services?.map((service) => {
+                    const isSelected = selectedServices.includes(service.id);
+                    return (
+                      <div 
+                        key={service.id} 
+                        className={`flex items-center gap-3 p-4 border-2 rounded-lg transition cursor-pointer ${
+                          isSelected 
+                            ? 'border-accent bg-accent/5' 
+                            : 'border-border hover:border-accent/50 hover:bg-muted/30'
+                        }`}
+                        onClick={() => handleServiceToggle(service.id)}
+                      >
+                        <Checkbox
+                          id={`service-${service.id}`}
+                          checked={isSelected}
+                          onCheckedChange={() => handleServiceToggle(service.id)}
+                        />
+                        <label
+                          htmlFor={`service-${service.id}`}
+                          className="flex-1 cursor-pointer"
+                        >
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <p className="font-semibold">{service.name}</p>
+                              <p className="text-sm text-muted-foreground">{service.durationMinutes} minutes</p>
+                            </div>
+                            <p className="font-bold text-accent">R{parseFloat(service.price.toString()).toFixed(2)}</p>
+                          </div>
+                        </label>
+                      </div>
+                    );
+                  })}
+                </div>
+                {selectedServices.length > 1 && (
+                  <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-sm font-semibold text-green-900">✓ Multiple services selected: {selectedServices.length} services</p>
+                  </div>
+                )}
               </div>
 
               {/* Date & Time Selection */}
@@ -273,37 +292,48 @@ export default function Booking() {
 
                 {selectedServices.length > 0 ? (
                   <>
-                    <div className="space-y-3 mb-4 pb-4 border-b border-border">
-                      {selectedServices.map((serviceId) => {
-                        const service = services?.find((s) => s.id === serviceId);
-                        return (
-                          <div key={serviceId} className="flex justify-between items-start">
-                            <div className="flex-1">
-                              <p className="font-semibold text-sm">{service?.name}</p>
-                              <p className="text-xs text-muted-foreground">{service?.durationMinutes} min</p>
+                    <div className="mb-4 pb-4 border-b border-border">
+                      {selectedServices.length > 1 && (
+                        <div className="mb-3 p-2 bg-blue-50 border border-blue-200 rounded text-xs font-semibold text-blue-900">
+                          📦 Combo: {selectedServices.length} services bundled
+                        </div>
+                      )}
+                      <div className="space-y-3">
+                        {selectedServices.map((serviceId) => {
+                          const service = services?.find((s) => s.id === serviceId);
+                          return (
+                            <div key={serviceId} className="flex justify-between items-start p-2 bg-muted/30 rounded">
+                              <div className="flex-1">
+                                <p className="font-semibold text-sm">{service?.name}</p>
+                                <p className="text-xs text-muted-foreground">{service?.durationMinutes} min</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <p className="font-semibold text-sm">R{parseFloat(service?.price.toString() || "0").toFixed(2)}</p>
+                                <button
+                                  onClick={() => handleServiceToggle(serviceId)}
+                                  className="text-muted-foreground hover:text-foreground transition"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <p className="font-semibold">R{parseFloat(service?.price.toString() || "0").toFixed(2)}</p>
-                              <button
-                                onClick={() => handleServiceToggle(serviceId)}
-                                className="text-muted-foreground hover:text-foreground transition"
-                              >
-                                <X className="w-4 h-4" />
-                              </button>
-                            </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                      </div>
                     </div>
 
-                    <div className="space-y-2 mb-4">
+                    <div className="space-y-3 mb-4">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Services:</span>
+                        <span className="font-semibold">{selectedServices.length}</span>
+                      </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Total Duration:</span>
                         <span className="font-semibold">{totalDuration} minutes</span>
                       </div>
-                      <div className="flex justify-between text-lg font-bold">
+                      <div className="flex justify-between text-lg font-bold border-t border-border pt-3">
                         <span>Total Cost:</span>
-                        <span className="text-primary">R{totalCost.toFixed(2)}</span>
+                        <span className="text-accent">R{totalCost.toFixed(2)}</span>
                       </div>
                     </div>
 
