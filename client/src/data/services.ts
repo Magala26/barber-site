@@ -1,11 +1,69 @@
 // Static service data for deployment without backend
 export const SERVICES = [
-  { id: 1, name: 'Classic Haircut', description: 'Traditional haircut with precision styling', price: '35.00', durationMinutes: 30, isActive: true },
-  { id: 2, name: 'Fade Haircut', description: 'Modern fade with clean lines and sharp edges', price: '40.00', durationMinutes: 35, isActive: true },
-  { id: 3, name: 'Beard Trim', description: 'Professional beard trimming and shaping', price: '25.00', durationMinutes: 20, isActive: true },
-  { id: 4, name: 'Haircut + Beard Combo', description: 'Complete grooming package with haircut and beard trim', price: '55.00', durationMinutes: 50, isActive: true },
-  { id: 5, name: 'Hot Towel Shave', description: 'Luxurious straight razor shave with hot towel treatment', price: '45.00', durationMinutes: 40, isActive: true },
-  { id: 6, name: 'Hair Styling', description: 'Professional styling for special occasions', price: '30.00', durationMinutes: 25, isActive: true },
+  { 
+    id: 1, 
+    name: 'FADE', 
+    description: 'Your go-to cut. Clean, effortless, and always on point.', 
+    price: '130', 
+    durationMinutes: 30, 
+    isActive: true 
+  },
+  { 
+    id: 2, 
+    name: 'FADE + BEARD/GOATEE', 
+    description: 'Haircut + beard work for a sharper overall look.', 
+    price: '150', 
+    durationMinutes: 45, 
+    isActive: true 
+  },
+  { 
+    id: 3, 
+    name: 'EYEBROWS', 
+    description: 'Eyebrow grooming with clean, subtle shaping.', 
+    price: '30', 
+    durationMinutes: 15, 
+    isActive: true 
+  },
+  { 
+    id: 4, 
+    name: 'ENHANCEMENTS', 
+    description: 'Enhancements and definition where it matters.', 
+    price: '30', 
+    durationMinutes: 15, 
+    isActive: true 
+  },
+  { 
+    id: 5, 
+    name: 'FULL SERVICE', 
+    description: 'Everything you need in one session.', 
+    price: '200', 
+    durationMinutes: 60, 
+    isActive: true 
+  },
+  { 
+    id: 6, 
+    name: 'CLEAN BUZZ + BEARD/GOATEE', 
+    description: 'Clean, tight buzz with a sharp beard or goatee finish.', 
+    price: '100', 
+    durationMinutes: 30, 
+    isActive: true 
+  },
+  { 
+    id: 7, 
+    name: 'KIDS CUT', 
+    description: 'Clean, comfortable cuts for the little ones.', 
+    price: '100', 
+    durationMinutes: 30, 
+    isActive: true 
+  },
+  { 
+    id: 8, 
+    name: 'THE INNER CIRCLE (MONTHLY MEMBERSHIP)', 
+    description: 'Built for consistency. 3 full service cuts. Multiple visits, priority access, always ready.', 
+    price: '500', 
+    durationMinutes: 60, 
+    isActive: true 
+  },
 ];
 
 export const OPERATING_HOURS = [

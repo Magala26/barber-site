@@ -43,10 +43,17 @@ export default function Services() {
       {/* Hero Section */}
       <section className="bg-primary text-white py-16 md:py-24">
         <div className="container">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Our Services</h1>
-          <p className="text-xl text-primary-foreground/90 max-w-2xl">
+          <div className="mb-8">
+            <p className="text-2xl font-mono mb-2">S8.</p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-2">SECTION 8 STUDIOS</h1>
+            <p className="text-xl font-mono tracking-widest">ESTD 2026</p>
+          </div>
+          <p className="text-xl text-primary-foreground/90 max-w-2xl mb-6">
             Discover our comprehensive range of premium grooming services tailored to your needs.
           </p>
+          <div className="inline-block bg-accent text-accent-foreground px-4 py-2 rounded font-bold tracking-widest">
+            APPOINTMENT ONLY
+          </div>
         </div>
       </section>
 
