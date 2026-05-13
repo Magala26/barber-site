@@ -60,6 +60,7 @@ export default function MultiSelectDropdown({
     <div ref={dropdownRef} className="relative w-full">
       {/* Dropdown Trigger Button */}
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "w-full px-4 py-3 border-2 rounded-lg flex items-center justify-between transition",
@@ -165,6 +166,7 @@ export default function MultiSelectDropdown({
               >
                 {opt.name}
                 <button
+                  type="button"
                   onClick={(e) => handleRemoveOption(opt.id, e)}
                   className="hover:text-foreground transition"
                 >
