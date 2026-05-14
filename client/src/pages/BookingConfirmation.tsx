@@ -1,7 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { Link, useLocation } from "wouter";
-import { CheckCircle, Calendar, Clock, User, Phone } from "lucide-react";
+import { CheckCircle, Calendar, Clock, User, Phone, CreditCard } from "lucide-react";
 import { useEffect, useState } from "react";
+import Navbar from "@/components/Navbar";
+import { COMPANY_INFO } from "@/data/services";
 
 const LOGO_URL = "/assets/s8-logo.jpg";
 
@@ -34,31 +36,7 @@ export default function BookingConfirmation() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
-        <div className="container flex items-center justify-between h-16">
-          <Link href="/">
-            <div className="flex items-center gap-3 cursor-pointer">
-              <img src={LOGO_URL} alt="Section8Studios" className="w-16 h-16 aspect-square object-cover rounded-2xl" />
-              <span className="text-xl font-bold text-primary hidden sm:inline">Section8Studios</span>
-            </div>
-          </Link>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm font-medium hover:text-accent transition">
-              Home
-            </Link>
-            <Link href="/services" className="text-sm font-medium hover:text-accent transition">
-              Services
-            </Link>
-            <Link href="/gallery" className="text-sm font-medium hover:text-accent transition">
-              Gallery
-            </Link>
-            <Link href="/booking" className="text-sm font-medium hover:text-accent transition">
-              Booking
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Confirmation Section */}
       <section className="py-16 md:py-24 bg-background">
@@ -121,6 +99,24 @@ export default function BookingConfirmation() {
               )}
             </div>
 
+            {/* Deposit Info */}
+            <div className="bg-accent/10 border border-accent/20 rounded-lg p-6 mb-8">
+              <div className="flex items-center gap-2 mb-3 text-accent">
+                <CreditCard className="w-5 h-5" />
+                <h3 className="font-bold">Secure Your Appointment</h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Please pay the R{COMPANY_INFO.bookingFee} booking fee to the following account to finalize your booking. Use **{bookingData.customerName}** as the reference.
+              </p>
+              <div className="space-y-2 text-xs font-mono bg-white p-4 rounded border border-accent/10">
+                <p><span className="font-bold">Bank:</span> {COMPANY_INFO.bankingDetails.bankName}</p>
+                <p><span className="font-bold">Account Holder:</span> {COMPANY_INFO.bankingDetails.accountHolder}</p>
+                <p><span className="font-bold">Account Number:</span> {COMPANY_INFO.bankingDetails.accountNumber}</p>
+                <p><span className="font-bold">Account Type:</span> {COMPANY_INFO.bankingDetails.accountType}</p>
+                <p><span className="font-bold">Branch Code:</span> {COMPANY_INFO.bankingDetails.branchCode}</p>
+              </div>
+            </div>
+
             {/* Reminders Info */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
               <h3 className="font-semibold text-blue-900 mb-3">Appointment Reminders</h3>
@@ -165,7 +161,8 @@ export default function BookingConfirmation() {
             </div>
             <div>
               <h4 className="font-bold mb-4">Contact</h4>
-              <p className="text-sm opacity-80">Phone: +27 67 173 3036</p>
+              <p className="text-sm opacity-80">Phone: {COMPANY_INFO.phone}</p>
+              <p className="text-sm opacity-80">Email: {COMPANY_INFO.email}</p>
             </div>
             <div>
               <h4 className="font-bold mb-4">Follow Us</h4>

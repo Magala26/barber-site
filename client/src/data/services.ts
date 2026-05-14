@@ -1,3 +1,18 @@
+// Global Company Information
+export const COMPANY_INFO = {
+  name: 'Section 8 Studios',
+  phone: '0671733036',
+  email: 'section8studioss@gmail.com',
+  bookingFee: 30,
+  bankingDetails: {
+    accountHolder: 'Section 8 Studios(PTY)',
+    accountNumber: '133988609',
+    accountType: 'Current Account',
+    bankName: 'Nedbank',
+    branchCode: '19876'
+  }
+};
+
 // Static service data for deployment without backend
 export const SERVICES = [
   { 
@@ -58,6 +73,14 @@ export const SERVICES = [
   },
   { 
     id: 8, 
+    name: 'BALD CUT AND BEARD', 
+    description: 'Clean bald cut with professional beard grooming.', 
+    price: '100', 
+    durationMinutes: 40, 
+    isActive: true 
+  },
+  { 
+    id: 9, 
     name: 'THE INNER CIRCLE (MONTHLY MEMBERSHIP)', 
     description: 'Built for consistency. 3 full service cuts. Multiple visits, priority access, always ready.', 
     price: '500', 

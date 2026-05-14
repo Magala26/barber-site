@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Clock, Star } from "lucide-react";
-import { SERVICES } from "@/data/services";
+import { SERVICES, COMPANY_INFO } from "@/data/services";
+import Navbar from "@/components/Navbar";
 
 const LOGO_URL = "/assets/s8-logo.jpg";
 
@@ -11,39 +12,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
-        <div className="container flex items-center justify-between h-16">
-          <Link href="/">
-            <div className="flex items-center gap-3 cursor-pointer">
-              <img src={LOGO_URL} alt="Section8Studios" className="w-16 h-16 aspect-square object-cover rounded-2xl" />
-              <span className="text-xl font-bold text-primary hidden sm:inline">Section8Studios</span>
-            </div>
-          </Link>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm font-medium hover:text-accent transition">
-              Home
-            </Link>
-            <Link href="/services" className="text-sm font-medium hover:text-accent transition">
-              Services
-            </Link>
-            <Link href="/gallery" className="text-sm font-medium hover:text-accent transition">
-              Gallery
-            </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-accent transition">
-              About
-            </Link>
-            <Link href="/booking" className="text-sm font-medium hover:text-accent transition">
-              Booking
-            </Link>
-          </div>
-          <Link href="/booking">
-            <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              Book Now
-            </Button>
-          </Link>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section with Blended Logo Background */}
       <section className="relative bg-gradient-to-b from-primary to-primary/90 text-white py-24 md:py-32 overflow-hidden">
@@ -180,8 +149,8 @@ export default function Home() {
             <div>
               <h4 className="font-bold mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-primary-foreground/80">
-                <li><a href="tel:+27671733036" className="hover:text-accent transition">Phone: +27 67 173 3036</a></li>
-                <li>Email: info@section8studios.com</li>
+                <li><a href={`tel:${COMPANY_INFO.phone}`} className="hover:text-accent transition">Phone: {COMPANY_INFO.phone}</a></li>
+                <li>Email: {COMPANY_INFO.email}</li>
               </ul>
             </div>
           </div>

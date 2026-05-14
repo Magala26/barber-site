@@ -2,10 +2,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Link, useLocation } from "wouter";
 import { Calendar, Clock, X } from "lucide-react";
-import { SERVICES } from "@/data/services";
+import { SERVICES, COMPANY_INFO } from "@/data/services";
 import { useState } from "react";
 import { toast } from "sonner";
-import MultiSelectDropdown from "@/components/MultiSelectDropdown";
+import ServicePills from "@/components/ServicePills";
+import Navbar from "@/components/Navbar";
+import { Info, CreditCard } from "lucide-react";
 
 const LOGO_URL = "/assets/s8-logo.jpg";
 const WHATSAPP_PHONE = "27671733036";
@@ -105,34 +107,7 @@ export default function Booking() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
-        <div className="container flex items-center justify-between h-16">
-          <Link href="/">
-            <div className="flex items-center gap-3 cursor-pointer">
-              <img src={LOGO_URL} alt="Section8Studios" className="w-16 h-16 aspect-square object-cover rounded-2xl" />
-              <span className="text-xl font-bold text-primary hidden sm:inline">Section8Studios</span>
-            </div>
-          </Link>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm font-medium hover:text-accent transition">
-              Home
-            </Link>
-            <Link href="/services" className="text-sm font-medium hover:text-accent transition">
-              Services
-            </Link>
-            <Link href="/gallery" className="text-sm font-medium hover:text-accent transition">
-              Gallery
-            </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-accent transition">
-              About
-            </Link>
-            <Link href="/booking" className="text-sm font-medium text-accent">
-              Booking
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
@@ -148,16 +123,10 @@ export default function Booking() {
                   <h2 className="text-2xl font-bold mb-2">Select Services</h2>
                   <p className="text-sm text-muted-foreground">Choose one or more services to combine in one appointment</p>
                 </div>
-                <MultiSelectDropdown
-                  options={services?.map((s) => ({
-                    id: s.id,
-                    name: s.name,
-                    price: s.price.toString(),
-                    durationMinutes: s.durationMinutes,
-                  })) || []}
+                <ServicePills
+                  services={services || []}
                   selectedIds={selectedServices}
                   onSelectionChange={setSelectedServices}
-                  placeholder="Click to select services..."
                 />
               </div>
 
@@ -303,10 +272,34 @@ export default function Booking() {
                         <span className="text-muted-foreground">Total Duration:</span>
                         <span className="font-semibold">{totalDuration} minutes</span>
                       </div>
-                      <div className="flex justify-between text-lg font-bold border-t border-border pt-3">
-                        <span>Total Cost:</span>
-                        <span className="text-accent">R{totalCost.toFixed(2)}</span>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Booking Fee:</span>
+                        <span className="font-semibold">R{COMPANY_INFO.bookingFee.toFixed(2)}</span>
                       </div>
+                      <div className="flex justify-between text-lg font-bold border-t border-border pt-3">
+                        <span>Total Due:</span>
+                        <span className="text-accent">R{(totalCost + COMPANY_INFO.bookingFee).toFixed(2)}</span>
+                      </div>
+                    </div>
+
+                    <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-4">
+                      <div className="flex items-center gap-2 mb-2 text-accent">
+                        <CreditCard className="w-4 h-4" />
+                        <h4 className="font-bold text-sm">Booking Deposit Required</h4>
+                      </div>
+                      <p className="text-xs text-muted-foreground mb-3">
+                        A non-refundable booking fee of R{COMPANY_INFO.bookingFee} is required to secure your appointment. Please use your **Full Name** as the payment reference.
+                      </p>
+                      <div className="space-y-1 text-[10px] font-mono bg-white/50 p-2 rounded border border-accent/10">
+                        <p><span className="font-bold">Bank:</span> {COMPANY_INFO.bankingDetails.bankName}</p>
+                        <p><span className="font-bold">Acc Holder:</span> {COMPANY_INFO.bankingDetails.accountHolder}</p>
+                        <p><span className="font-bold">Acc Number:</span> {COMPANY_INFO.bankingDetails.accountNumber}</p>
+                        <p><span className="font-bold">Acc Type:</span> {COMPANY_INFO.bankingDetails.accountType}</p>
+                        <p><span className="font-bold">Branch:</span> {COMPANY_INFO.bankingDetails.branchCode}</p>
+                      </div>
+                      <p className="text-[10px] text-accent font-bold mt-2">
+                        * Walk-ins are also welcome, but appointments take priority.
+                      </p>
                     </div>
 
                     <div className="bg-muted/50 rounded p-3 text-xs text-muted-foreground">
