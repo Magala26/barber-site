@@ -7,12 +7,12 @@ const LOGO_URL = "/assets/s8-logo.jpg";
 
 // Static gallery images using newly generated assets
 const GALLERY_IMAGES = [
-  { id: 1, title: "Premium Fade", description: "Clean skin fade with sharp lines and precision styling", imageUrl: "/assets/gallery_fade_cut.png" },
-  { id: 2, title: "Beard Shaping", description: "Professional beard grooming with straight razor precision", imageUrl: "/assets/gallery_beard_trim.png" },
-  { id: 3, title: "Classic Cut", description: "Timeless classic haircut in our premium leather chair", imageUrl: "/assets/gallery_classic_cut.png" },
-  { id: 4, title: "Modern Style", description: "Contemporary men's styling and texturing", imageUrl: "/assets/gallery_fade_cut.png" },
-  { id: 5, title: "Hot Towel Shave", description: "Luxurious traditional straight razor shave", imageUrl: "/assets/gallery_beard_trim.png" },
-  { id: 6, title: "Executive Package", description: "Full premium haircut and comprehensive beard grooming", imageUrl: "/assets/gallery_classic_cut.png" },
+  { id: 1, title: "Clean Fade", description: "Sharp lineup with a precision skin fade", imageUrl: "/assets/47226.jpg", position: "object-center" },
+  { id: 2, title: "Poolside Session", description: "House call vibes — fresh cut by the pool", imageUrl: "/assets/47227.jpg", position: "object-center" },
+  { id: 3, title: "Premium Tools", description: "Professional-grade gear for the perfect cut", imageUrl: "/assets/47230.jpg", position: "object-center" },
+  { id: 4, title: "Happy Client", description: "Nothing beats that fresh cut feeling", imageUrl: "/assets/47231.jpg", position: "object-top" },
+  { id: 5, title: "S8 Polaroid", description: "Classic polaroid — curls on point", imageUrl: "/assets/47232.jpg", position: "object-center" },
+  { id: 6, title: "The Craft", description: "Behind the scenes with the barber at work", imageUrl: "/assets/47233.jpg", position: "object-center" },
 ];
 
 export default function Gallery() {
@@ -42,7 +42,7 @@ export default function Gallery() {
                 <img
                   src={image.imageUrl}
                   alt={image.title || "Gallery image"}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
+                  className={`w-full h-64 object-cover ${image.position || 'object-center'} group-hover:scale-105 transition duration-300`}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-end">
                   <div className="w-full p-4 bg-gradient-to-t from-black/80 to-transparent text-white opacity-0 group-hover:opacity-100 transition duration-300">
